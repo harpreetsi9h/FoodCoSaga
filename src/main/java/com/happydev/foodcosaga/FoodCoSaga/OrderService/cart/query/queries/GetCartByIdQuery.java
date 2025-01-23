@@ -1,0 +1,12 @@
+package com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.query.queries;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class GetCartByIdQuery {
+    private String cartId;
+}
