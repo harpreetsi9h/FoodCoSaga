@@ -10,5 +10,6 @@ public class DeliverOrderCommand {
 
     @TargetAggregateIdentifier
     private String deliveryId;
+    private String deliveryDriverId;
     private String orderId;
 }

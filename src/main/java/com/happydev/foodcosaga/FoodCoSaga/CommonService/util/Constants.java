@@ -39,6 +39,7 @@ public class Constants {
     public static final String DELIVERY_DRIVER_UPDATED_SUCCESSFULLY = "Delivery Driver Updated Successfully!";
     public static final String DELIVERY_DRIVER_REMOVED_SUCCESSFULLY = "Delivery Driver Removed Successfully!";
     public static final String ORDER_ITEM_UPDATED_SUCCESSFULLY = "Orders Item Updated Successfully!";
+    public static final String ORDER_ITEM_ADDED_TO_CART = "Orders Item Added To Cart!";
     public static final String ORDER_ITEM_REMOVED_SUCCESSFULLY = "Orders Item Removed Successfully!";
 
     public static final String ORDER_UPDATED_SUCCESSFULLY = "Orders Updated Successfully!";

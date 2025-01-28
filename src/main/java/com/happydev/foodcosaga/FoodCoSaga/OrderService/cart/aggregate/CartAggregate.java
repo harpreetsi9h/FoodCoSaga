@@ -2,8 +2,10 @@ package com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.aggregate;
 
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.commands.CartCloseCommand;
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.events.CartCloseEvent;
+import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.command.AddOrderItemCommand;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.command.CreateCartCommand;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.command.UpdateCartCommand;
+import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.event.AddOrderItemEvent;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.event.CartCreatedEvent;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.event.UpdateCartEvent;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.orderItem.core.data.OrderItem;
@@ -73,6 +75,18 @@ public class CartAggregate {
     @EventSourcingHandler
     public void on(CartCloseEvent event) {
         this.status = event.getStatus();
+    }
+
+    @CommandHandler
+    public void handle(AddOrderItemCommand command) {
+        AddOrderItemEvent event = new AddOrderItemEvent();
+        BeanUtils.copyProperties(command, event);
+        AggregateLifecycle.apply(event);
+    }
+
+    @EventSourcingHandler
+    public void on(AddOrderItemEvent event) {
+        this.orderItems.addAll(event.getOrderItems());
     }
 
 }

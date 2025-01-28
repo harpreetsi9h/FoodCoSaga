@@ -14,6 +14,7 @@ public class DeliveryAggregate {
     @AggregateIdentifier
     private String deliveryId;
     private String orderId;
+    private String deliveryDriverId;
     private String deliveryStatus;
 
     public DeliveryAggregate() {
@@ -27,6 +28,7 @@ public class DeliveryAggregate {
                 = OrderDeliveredEvent
                 .builder()
                 .deliveryId(deliverOrderCommand.getDeliveryId())
+                .deliveryDriverId(deliverOrderCommand.getDeliveryDriverId())
                 .orderId(deliverOrderCommand.getOrderId())
                 .deliveryStatus("COMPLETED")
                 .build();
@@ -38,6 +40,7 @@ public class DeliveryAggregate {
     public void on(OrderDeliveredEvent event) {
         this.orderId = event.getOrderId();
         this.deliveryId = event.getDeliveryId();
+        this.deliveryDriverId = event.getDeliveryDriverId();
         this.deliveryStatus = event.getDeliveryStatus();
     }
 }

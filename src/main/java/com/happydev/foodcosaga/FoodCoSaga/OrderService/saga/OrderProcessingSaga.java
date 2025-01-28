@@ -5,6 +5,8 @@ import com.happydev.foodcosaga.FoodCoSaga.CommonService.events.*;
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.Constants;
 import com.happydev.foodcosaga.FoodCoSaga.CustomerService.customer.CustomerResponseModel;
 import com.happydev.foodcosaga.FoodCoSaga.CustomerService.customer.query.api.GetCustomerByIdQuery;
+import com.happydev.foodcosaga.FoodCoSaga.DeliveryService.deliveryDriver.DeliveryDriver;
+import com.happydev.foodcosaga.FoodCoSaga.DeliveryService.deliveryDriver.query.queries.GetDeliveryDrivers;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.order.command.api.events.OrderCreatedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
@@ -16,6 +18,7 @@ import org.axonframework.queryhandling.QueryGateway;
 import org.axonframework.spring.stereotype.Saga;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.UUID;
 
 @Saga
@@ -85,12 +88,21 @@ public class OrderProcessingSaga {
         log.info("PaymentProcessedEvent in Saga for Orders Id : {}",
                 event.getOrderId());
         try {
+            GetDeliveryDrivers query = new GetDeliveryDrivers();
+
+            List<DeliveryDriver> dd =
+                    queryGateway.query(query,
+                            ResponseTypes.multipleInstancesOf(DeliveryDriver.class)).join();
+
+            log.info("PaymentProcessedEvent - Delivery Driver id : {}",
+                    dd.get(0).getDriverId());
 
             DeliverOrderCommand deliverOrderCommand
                     = DeliverOrderCommand
                     .builder()
                     .deliveryId(UUID.randomUUID().toString())
                     .orderId(event.getOrderId())
+                    .deliveryDriverId(dd.get(0).getDriverId())
                     .build();
             commandGateway.send(deliverOrderCommand);
             closeCartCommand(event.getCartId());

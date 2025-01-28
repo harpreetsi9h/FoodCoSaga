@@ -21,10 +21,10 @@ public class DeliveryDriverController {
         this.service = service;
     }
 
-    @GetMapping(Constants.URL_DELIVERY_DRIVER)
-    public ResponseEntity<List<DeliveryDriver>> getDeliveryDrivers() {
-        return ResponseEntity.ok(service.getDeliveryDrivers());
-    }
+//    @GetMapping(Constants.URL_DELIVERY_DRIVER)
+//    public ResponseEntity<List<DeliveryDriver>> getDeliveryDrivers() {
+//        return ResponseEntity.ok(service.getDeliveryDrivers());
+//    }
 
     @PostMapping(Constants.URL_DELIVERY_DRIVER)
     public ResponseEntity<String> createDeliveryDriver(@RequestBody @Valid DeliveryDriver driver) {

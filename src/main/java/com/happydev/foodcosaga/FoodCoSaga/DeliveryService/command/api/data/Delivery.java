@@ -12,5 +12,6 @@ public class Delivery {
     @Id
     private String deliveryId;
     private String orderId;
+    private String deliveryDriverId;
     private String deliveryStatus;
 }

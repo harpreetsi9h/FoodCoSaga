@@ -8,5 +8,6 @@ import lombok.Data;
 public class OrderDeliveredEvent {
     private String deliveryId;
     private String orderId;
+    private String deliveryDriverId;
     private String deliveryStatus;
 }

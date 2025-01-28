@@ -2,6 +2,7 @@ package com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.controller;
 
 
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.Constants;
+import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.command.AddOrderItemCommand;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.command.CreateCartCommand;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.command.UpdateCartCommand;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.core.Cart;
@@ -54,5 +55,17 @@ public class CartCommandController {
 
         commandGateway.sendAndWait(command);
         return Constants.CART_UPDATED_SUCCESSFULLY;
+    }
+
+    @PutMapping(Constants.URL_CART+"/orderItem")
+    public String addOrderItems(@RequestBody Cart cart) {
+
+        AddOrderItemCommand command = AddOrderItemCommand.builder()
+                .cartId(cart.getCartId())
+                .orderItems(cart.getOrderItems())
+                .build();
+
+        commandGateway.sendAndWait(command);
+        return Constants.ORDER_ITEM_ADDED_TO_CART;
     }
 }
