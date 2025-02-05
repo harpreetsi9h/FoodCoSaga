@@ -6,6 +6,7 @@ import com.happydev.foodcosaga.FoodCoSaga.DeliveryService.deliveryDriver.query.q
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ public class DeliveryDriverQueryController {
         this.queryGateway = queryGateway;
     }
 
+    @CrossOrigin
     @GetMapping(Constants.URL_DELIVERY_DRIVER)
     public ResponseEntity<List<DeliveryDriver>> getDeliveryDrivers() {
         GetDeliveryDrivers query = new GetDeliveryDrivers();

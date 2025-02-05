@@ -11,10 +11,7 @@ import com.happydev.foodcosaga.FoodCoSaga.OrderService.orderItem.query.api.queri
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +25,7 @@ public class CartQueryController {
         this.queryGateway = queryGateway;
     }
 
+    @CrossOrigin
     @GetMapping(Constants.URL_CART+"/id={customerId}")
     public ResponseEntity<CartModel> getCartByCustomer(@PathVariable String customerId) {
         GetCartByCustomer query = new GetCartByCustomer(customerId);
@@ -44,6 +42,7 @@ public class CartQueryController {
         return ResponseEntity.ok(cartModel);
     }
 
+    @CrossOrigin
     @GetMapping(Constants.URL_CART+"/{cartId}")
     public ResponseEntity<CartModel> getCartByID(@PathVariable String cartId) {
         GetCartByIdQuery query = new GetCartByIdQuery(cartId);

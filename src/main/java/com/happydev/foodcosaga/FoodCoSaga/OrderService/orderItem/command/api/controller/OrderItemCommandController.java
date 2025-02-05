@@ -23,6 +23,7 @@ public class OrderItemCommandController {
         this.commandGateway = commandGateway;
     }
 
+    @CrossOrigin
     @PostMapping(Constants.URL_ORDER_ITEM)
     public ResponseEntity<String> createOrderItem(@RequestBody @Valid OrderItemModel orderItem) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -37,6 +38,7 @@ public class OrderItemCommandController {
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
+    @CrossOrigin
     @PutMapping(Constants.URL_ORDER_ITEM)
     public String updateOrderItem(@RequestBody OrderItemModel orderItem) {
         UpdateOrderItemCommand command = UpdateOrderItemCommand.builder()

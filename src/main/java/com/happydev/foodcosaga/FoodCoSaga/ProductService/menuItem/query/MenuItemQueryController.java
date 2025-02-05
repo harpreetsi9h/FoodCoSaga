@@ -8,10 +8,7 @@ import com.happydev.foodcosaga.FoodCoSaga.ProductService.menuItem.query.queries.
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +22,7 @@ public class MenuItemQueryController {
         this.queryGateway = queryGateway;
     }
 
+    @CrossOrigin
     @GetMapping(Constants.URL_MENU_ITEM+"/{menuItemId}")
     public ResponseEntity<MenuItem> getMenuItem(@PathVariable String menuItemId) {
         GetItemByIDQuery query = new GetItemByIDQuery(menuItemId);
@@ -32,6 +30,7 @@ public class MenuItemQueryController {
         return ResponseEntity.ok(menuItem);
     }
 
+    @CrossOrigin
     @GetMapping(Constants.URL_MENU_ITEM+Constants.URL_RESTAURANT+"/{restId}")
     public ResponseEntity<List<MenuItem>> getMenuItemsByRestId(@PathVariable String restId) {
         GetItemsByRestaurant query = new GetItemsByRestaurant(restId);

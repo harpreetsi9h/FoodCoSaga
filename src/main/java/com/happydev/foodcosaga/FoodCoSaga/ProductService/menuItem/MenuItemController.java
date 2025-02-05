@@ -21,11 +21,13 @@ public class MenuItemController {
         this.itemService = itemService;
     }
 
+    @CrossOrigin
     @GetMapping(Constants.URL_MENU_ITEM)
     public ResponseEntity<List<MenuItem>> getMenuItems() {
         return ResponseEntity.ok(itemService.getMenuItems());
     }
 
+    @CrossOrigin
     @PostMapping(Constants.URL_MENU_ITEM)
     public ResponseEntity<String> createMenuItem(@RequestBody @Valid MenuItem menuItem) {
         String menuItemId = itemService.createMenuItem(menuItem);
@@ -37,11 +39,13 @@ public class MenuItemController {
 //        return ResponseEntity.ok(itemService.getMenuItem(menuItemId));
 //    }
 
+    @CrossOrigin
     @DeleteMapping(Constants.URL_MENU_ITEM+"/{menuItemId}")
     public ResponseEntity<String> removeMenuItem(@PathVariable String menuItemId) throws CustomMessageException {
         return ResponseEntity.ok(itemService.removeMenuItem(menuItemId));
     }
 
+    @CrossOrigin
     @PutMapping(Constants.URL_MENU_ITEM)
     public ResponseEntity<String> updatedMenuItem(@RequestBody @Valid MenuItem menuItem) throws CustomMessageException {
         return ResponseEntity.ok(itemService.updateMenuItem(menuItem));

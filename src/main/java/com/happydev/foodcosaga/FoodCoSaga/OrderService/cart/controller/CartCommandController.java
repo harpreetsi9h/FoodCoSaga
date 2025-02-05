@@ -22,6 +22,7 @@ public class CartCommandController {
         this.commandGateway = commandGateway;
     }
 
+    @CrossOrigin
     @PostMapping(Constants.URL_CART)
     public String createCart(@RequestBody Cart cart) {
 
@@ -41,6 +42,7 @@ public class CartCommandController {
         return cartId;
     }
 
+    @CrossOrigin
     @PutMapping(Constants.URL_CART)
     public String updateCart(@RequestBody Cart cart) {
 
@@ -57,6 +59,7 @@ public class CartCommandController {
         return Constants.CART_UPDATED_SUCCESSFULLY;
     }
 
+    @CrossOrigin
     @PutMapping(Constants.URL_CART+"/orderItem")
     public String addOrderItems(@RequestBody Cart cart) {
 

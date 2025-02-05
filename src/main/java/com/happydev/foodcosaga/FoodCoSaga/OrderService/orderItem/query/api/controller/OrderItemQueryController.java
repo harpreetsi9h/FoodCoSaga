@@ -7,10 +7,7 @@ import com.happydev.foodcosaga.FoodCoSaga.OrderService.orderItem.query.api.queri
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,7 @@ public class OrderItemQueryController {
         this.queryGateway = queryGateway;
     }
 
+    @CrossOrigin
     @GetMapping(Constants.URL_ORDER_ITEM)
     public ResponseEntity<List<OrderItemModel>> getOrderItems() {
 
@@ -34,6 +32,7 @@ public class OrderItemQueryController {
         return ResponseEntity.ok(orderItems);
     }
 
+    @CrossOrigin
     @GetMapping(Constants.URL_ORDER_ITEM+"/{orderItemId}")
     public ResponseEntity<OrderItemModel> getOrderItem(@PathVariable String orderItemId) {
 

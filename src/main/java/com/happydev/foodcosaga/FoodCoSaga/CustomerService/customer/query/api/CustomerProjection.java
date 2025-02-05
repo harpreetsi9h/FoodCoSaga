@@ -8,6 +8,9 @@ import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class CustomerProjection {
 
@@ -18,6 +21,25 @@ public class CustomerProjection {
     public CustomerProjection(CustomerRepository repository, InternalServices internalServices) {
         this.repository = repository;
         this.internalServices = internalServices;
+    }
+
+    @QueryHandler
+    public List<CustomerResponseModel> handle(GetCustomersQuery query) {
+        List<Customer> dataList = repository.findAll();
+
+        return dataList.stream().map(
+                data -> CustomerResponseModel.builder()
+                        .customerId(data.getCustomerId())
+                        .createdAt(data.getCreatedAt())
+                        .pic(data.getPic())
+                        .email(data.getEmail())
+                        .firstName(data.getFirstName())
+                        .lastName(data.getLastName())
+                        .phone(data.getPhone())
+                        .address(internalServices.getAddress(data.getAddressId()))
+                        .cardDetail(internalServices.getCardDetail(data.getCardDetailId()))
+                        .build()
+        ).collect(Collectors.toList());
     }
 
     @QueryHandler
