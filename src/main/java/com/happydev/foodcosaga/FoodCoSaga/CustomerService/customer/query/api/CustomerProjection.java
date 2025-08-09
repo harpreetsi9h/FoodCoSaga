@@ -1,6 +1,7 @@
 package com.happydev.foodcosaga.FoodCoSaga.CustomerService.customer.query.api;
 
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.InternalServices;
+import com.happydev.foodcosaga.FoodCoSaga.CustomerService.cardDetail.CardDetail;
 import com.happydev.foodcosaga.FoodCoSaga.CustomerService.customer.Customer;
 import com.happydev.foodcosaga.FoodCoSaga.CustomerService.customer.CustomerRepository;
 import com.happydev.foodcosaga.FoodCoSaga.CustomerService.customer.CustomerResponseModel;
@@ -37,7 +38,7 @@ public class CustomerProjection {
                         .lastName(data.getLastName())
                         .phone(data.getPhone())
                         .address(internalServices.getAddress(data.getAddressId()))
-                        .cardDetail(internalServices.getCardDetail(data.getCardDetailId()))
+                        .cardDetail(!data.getCardDetailId().isEmpty() ? internalServices.getCardDetail(data.getCardDetailId()) : new CardDetail())
                         .build()
         ).collect(Collectors.toList());
     }
@@ -56,7 +57,7 @@ public class CustomerProjection {
                 .lastName(customer.getLastName())
                 .phone(customer.getPhone())
                 .address(internalServices.getAddress(customer.getAddressId()))
-                .cardDetail(internalServices.getCardDetail(customer.getCardDetailId()))
+                .cardDetail(!customer.getCardDetailId().isEmpty() ? internalServices.getCardDetail(customer.getCardDetailId()) : new CardDetail())
                 .build();
     }
 }

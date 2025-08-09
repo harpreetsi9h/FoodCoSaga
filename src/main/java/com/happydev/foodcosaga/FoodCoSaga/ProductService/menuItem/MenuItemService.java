@@ -58,4 +58,8 @@ public class MenuItemService {
         }
         else throw new CustomMessageException(Constants.MENU_ITEM_NOT_FOUND_WITH_ID+menuItemId);
     }
+
+    public void removeAll() {
+        repository.deleteAll();
+    }
 }

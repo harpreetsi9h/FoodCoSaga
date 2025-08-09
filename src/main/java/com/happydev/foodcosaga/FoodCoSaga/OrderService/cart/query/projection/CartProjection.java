@@ -5,6 +5,7 @@ import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.core.Cart;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.core.CartRepository;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.query.queries.GetCartByCustomer;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.query.queries.GetCartByIdQuery;
+import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.query.queries.GetCartsQuery;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.orderItem.core.model.OrderItemModel;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.orderItem.query.api.queries.GetOrderItemsByIds;
 import com.happydev.foodcosaga.FoodCoSaga.ProductService.menuItem.MenuItem;
@@ -48,6 +49,11 @@ public class CartProjection {
             return null;
         }
         return updateSubTotal(repository.findById(query.getCartId()).get());
+    }
+
+    @QueryHandler
+    public List<Cart> handle(GetCartsQuery query) {
+        return repository.findAll();
     }
 
     private Cart updateSubTotal(Cart cart) {

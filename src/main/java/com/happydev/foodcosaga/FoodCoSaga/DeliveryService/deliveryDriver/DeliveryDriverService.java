@@ -2,6 +2,7 @@ package com.happydev.foodcosaga.FoodCoSaga.DeliveryService.deliveryDriver;
 
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.exception.CustomMessageException;
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.Constants;
+import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.CountResModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,14 +36,13 @@ public class DeliveryDriverService {
         if (repository.findById(driverId).isPresent()) {
             repository.deleteById(driverId);
             return Constants.DELIVERY_DRIVER_REMOVED_SUCCESSFULLY;
-        }
-        else throw new CustomMessageException(Constants.DRIVER_NOT_FOUND_WITH_ID+driverId);
+        } else throw new CustomMessageException(Constants.DRIVER_NOT_FOUND_WITH_ID + driverId);
 
     }
 
     public DeliveryDriver getDeliveryDriver(String driverId) throws CustomMessageException {
-        if(repository.findById(driverId).isEmpty())
-            throw new CustomMessageException(Constants.DRIVER_NOT_FOUND_WITH_ID+driverId);
+        if (repository.findById(driverId).isEmpty())
+            throw new CustomMessageException(Constants.DRIVER_NOT_FOUND_WITH_ID + driverId);
         return repository.findById(driverId).get();
     }
 
@@ -51,8 +51,11 @@ public class DeliveryDriverService {
         if (repository.findById(deliveryDriver.getDriverId()).isPresent()) {
             repository.save(deliveryDriver);
             return Constants.DELIVERY_DRIVER_UPDATED_SUCCESSFULLY;
-        }
-        else throw new CustomMessageException(Constants.DRIVER_NOT_FOUND_WITH_ID+deliveryDriver.getDriverId());
+        } else throw new CustomMessageException(Constants.DRIVER_NOT_FOUND_WITH_ID + deliveryDriver.getDriverId());
 
+    }
+
+    public CountResModel getDeliveryDriversCount() {
+        return new CountResModel(repository.count());
     }
 }

@@ -1,5 +1,7 @@
 package com.happydev.foodcosaga.FoodCoSaga.ProductService.menuItem;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.DecimalMax;
@@ -28,5 +30,6 @@ public class MenuItem {
     private float price;
     private String itemPic;
     private String desc;
+    private boolean veg;
     private String createdAt;
 }

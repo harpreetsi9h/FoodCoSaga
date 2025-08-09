@@ -9,6 +9,7 @@ public class Constants {
     public static final String URL_MENU_ITEM = "/menuItem";
     public static final String URL_CUSTOMER = "/customer";
     public static final String URL_DELIVERY_DRIVER = "/deliveryDriver";
+    public static final String URL_DELIVERY = "/delivery";
     public static final String URL_ORDER_ITEM = "/orderItem";
     public static final String URL_ORDER = "/order";
     public static final String URL_CARD_DETAIL = "/cardDetail";

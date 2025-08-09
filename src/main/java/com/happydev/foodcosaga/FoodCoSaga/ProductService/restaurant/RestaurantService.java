@@ -2,6 +2,7 @@ package com.happydev.foodcosaga.FoodCoSaga.ProductService.restaurant;
 
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.exception.CustomMessageException;
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.Constants;
+import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.CountResModel;
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.InternalServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -86,5 +87,9 @@ public class RestaurantService {
             return Constants.RESTAURANT_UPDATED_SUCCESSFULLY;
         }
         else throw new CustomMessageException(Constants.RESTAURANT_NOT_FOUND_WITH_ID+restaurant.getRestId());
+    }
+
+    public CountResModel getRestCount() {
+        return new CountResModel(repository.count());
     }
 }

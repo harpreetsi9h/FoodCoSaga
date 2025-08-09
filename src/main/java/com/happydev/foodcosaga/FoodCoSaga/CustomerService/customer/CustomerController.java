@@ -2,6 +2,7 @@ package com.happydev.foodcosaga.FoodCoSaga.CustomerService.customer;
 
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.exception.CustomMessageException;
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.Constants;
+import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.CountResModel;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,5 +49,11 @@ public class CustomerController {
     @PutMapping(Constants.URL_CUSTOMER)
     public ResponseEntity<String> updateCustomer(@RequestBody @Valid Customer customer) throws CustomMessageException {
         return ResponseEntity.ok(service.updateCustomer(customer));
+    }
+
+    @CrossOrigin
+    @GetMapping(Constants.URL_CUSTOMER+"/count")
+    public ResponseEntity<CountResModel> getCustomerCount() {
+        return ResponseEntity.ok(service.getCustomerCount());
     }
 }

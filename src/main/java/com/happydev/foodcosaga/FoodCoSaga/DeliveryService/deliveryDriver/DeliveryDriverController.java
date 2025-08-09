@@ -2,6 +2,7 @@ package com.happydev.foodcosaga.FoodCoSaga.DeliveryService.deliveryDriver;
 
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.exception.CustomMessageException;
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.Constants;
+import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.CountResModel;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,5 +50,11 @@ public class DeliveryDriverController {
     @PutMapping(Constants.URL_DELIVERY_DRIVER)
     public ResponseEntity<String> updateDeliveryDriver(@RequestBody @Valid DeliveryDriver driver) throws CustomMessageException {
         return ResponseEntity.ok(service.updateDeliveryDriver(driver));
+    }
+
+    @CrossOrigin
+    @GetMapping(Constants.URL_DELIVERY_DRIVER+"/count")
+    public ResponseEntity<CountResModel> getCustomerCount() {
+        return ResponseEntity.ok(service.getDeliveryDriversCount());
     }
 }

@@ -50,6 +50,13 @@ public class MenuItemController {
     public ResponseEntity<String> updatedMenuItem(@RequestBody @Valid MenuItem menuItem) throws CustomMessageException {
         return ResponseEntity.ok(itemService.updateMenuItem(menuItem));
     }
+    
+    @CrossOrigin
+    @DeleteMapping(Constants.URL_MENU_ITEM+"/all")
+    public ResponseEntity.BodyBuilder removeAll() {
+        itemService.removeAll();
+        return ResponseEntity.status(HttpStatus.OK);
+    }
 
 //    @GetMapping(Constants.URL_MENU_ITEM+Constants.URL_RESTAURANT+"/{restId}")
 //    public ResponseEntity<List<MenuItem>> getMenuItemsByRestId(@PathVariable String restId) {

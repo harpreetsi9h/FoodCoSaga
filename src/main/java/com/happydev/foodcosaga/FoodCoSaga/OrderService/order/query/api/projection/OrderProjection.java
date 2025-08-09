@@ -5,6 +5,7 @@ import com.happydev.foodcosaga.FoodCoSaga.OrderService.order.core.data.Orders;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.order.core.data.OrderRepository;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.order.query.api.queries.GetOrderByIdQuery;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.order.query.api.queries.GetOrderQuery;
+import com.happydev.foodcosaga.FoodCoSaga.OrderService.order.query.api.queries.GetOrdersCountQuery;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Component;
@@ -34,6 +35,11 @@ public class OrderProjection {
             return null;
         }
         return repository.findById(query.getOrderId()).get();
+    }
+
+    @QueryHandler
+    public long handle(GetOrdersCountQuery query) {
+       return repository.countByOrderStatus(query.getOrderStatus());
     }
 
 }

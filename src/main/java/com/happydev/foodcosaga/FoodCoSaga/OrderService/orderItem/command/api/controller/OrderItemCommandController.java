@@ -31,7 +31,7 @@ public class OrderItemCommandController {
                 .orderItemId(UUID.randomUUID().toString())
                 .menuItemId(orderItem.getMenuItemId())
                 .quantity(orderItem.getQuantity())
-                .createdAt(orderItem.getCreatedAt())
+                .createdAt(timestamp.toString())
                 .build();
 
         String result = commandGateway.sendAndWait(createOrderItemCommand);

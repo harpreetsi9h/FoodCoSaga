@@ -2,9 +2,12 @@ package com.happydev.foodcosaga.FoodCoSaga.OrderService.order.query.api.controll
 
 
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.Constants;
+import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.CountResModel;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.order.core.data.Orders;
+import com.happydev.foodcosaga.FoodCoSaga.OrderService.order.core.data.OrdersCountRes;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.order.query.api.queries.GetOrderByIdQuery;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.order.query.api.queries.GetOrderQuery;
+import com.happydev.foodcosaga.FoodCoSaga.OrderService.order.query.api.queries.GetOrdersCountQuery;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.http.ResponseEntity;
@@ -40,5 +43,16 @@ public class OrderQueryController {
 
         Orders order = queryGateway.query(query, ResponseTypes.instanceOf(Orders.class)).join();
         return ResponseEntity.ok(order);
+    }
+
+    @CrossOrigin
+    @GetMapping(Constants.URL_ORDER+"/countByStatus/{status}")
+    public ResponseEntity<OrdersCountRes> getOrdersCountByStatus(@PathVariable String status) {
+        GetOrdersCountQuery query = new GetOrdersCountQuery();
+        query.setOrderStatus(status);
+
+        Long count = queryGateway.query(query, ResponseTypes.instanceOf(Long.class)).join();
+        OrdersCountRes res = new OrdersCountRes(count, status);
+        return ResponseEntity.ok(res);
     }
 }

@@ -5,6 +5,7 @@ import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.core.Cart;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.core.CartModel;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.query.queries.GetCartByCustomer;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.query.queries.GetCartByIdQuery;
+import com.happydev.foodcosaga.FoodCoSaga.OrderService.cart.query.queries.GetCartsQuery;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.orderItem.core.model.OrderItemModel;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.orderItem.query.api.queries.GetOrderItemQuery;
 import com.happydev.foodcosaga.FoodCoSaga.OrderService.orderItem.query.api.queries.GetOrderItemsByIds;
@@ -58,6 +59,26 @@ public class CartQueryController {
                 .build();
 
         return ResponseEntity.ok(cartModel);
+    }
+
+    @CrossOrigin
+    @GetMapping(Constants.URL_CART)
+    public ResponseEntity<List<CartModel>> getCarts() {
+        GetCartsQuery query = new GetCartsQuery();
+
+        List<Cart> carts = queryGateway.query(query, ResponseTypes.multipleInstancesOf(Cart.class)).join();
+
+        List<CartModel> cartModels = carts.stream()
+                .map(cart -> CartModel.builder()
+                        .cartId(cart.getCartId())
+                        .status(cart.getStatus())
+                        .customerId(cart.getCustomerId())
+                        .subTotal(cart.getSubTotal())
+                        .createdAt(cart.getCreatedAt())
+                        .orderItems(getOrderItems(cart.getOrderItems()))
+                        .build()).toList();
+
+        return ResponseEntity.ok(cartModels);
     }
 
     private List<OrderItemModel> getOrderItems(List<String> orderItems) {

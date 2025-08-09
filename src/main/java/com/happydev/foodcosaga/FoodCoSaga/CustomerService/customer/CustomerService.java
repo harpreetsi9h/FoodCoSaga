@@ -2,6 +2,7 @@ package com.happydev.foodcosaga.FoodCoSaga.CustomerService.customer;
 
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.exception.CustomMessageException;
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.Constants;
+import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.CountResModel;
 import com.happydev.foodcosaga.FoodCoSaga.CommonService.util.InternalServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,5 +84,9 @@ public class CustomerService {
         }
         else throw new CustomMessageException(Constants.CUSTOMER_NOT_FOUND_WITH_ID+customer.getCustomerId());
 
+    }
+
+    public CountResModel getCustomerCount() {
+        return new CountResModel(repository.count());
     }
 }
