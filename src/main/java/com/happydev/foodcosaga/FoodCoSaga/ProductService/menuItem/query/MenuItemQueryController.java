@@ -22,7 +22,6 @@ public class MenuItemQueryController {
         this.queryGateway = queryGateway;
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_MENU_ITEM+"/{menuItemId}")
     public ResponseEntity<MenuItem> getMenuItem(@PathVariable String menuItemId) {
         GetItemByIDQuery query = new GetItemByIDQuery(menuItemId);
@@ -30,7 +29,6 @@ public class MenuItemQueryController {
         return ResponseEntity.ok(menuItem);
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_MENU_ITEM+Constants.URL_RESTAURANT+"/{restId}")
     public ResponseEntity<List<MenuItem>> getMenuItemsByRestId(@PathVariable String restId) {
         GetItemsByRestaurant query = new GetItemsByRestaurant(restId);

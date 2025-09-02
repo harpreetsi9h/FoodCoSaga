@@ -26,7 +26,6 @@ public class CartQueryController {
         this.queryGateway = queryGateway;
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_CART+"/id={customerId}")
     public ResponseEntity<CartModel> getCartByCustomer(@PathVariable String customerId) {
         GetCartByCustomer query = new GetCartByCustomer(customerId);
@@ -43,7 +42,6 @@ public class CartQueryController {
         return ResponseEntity.ok(cartModel);
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_CART+"/{cartId}")
     public ResponseEntity<CartModel> getCartByID(@PathVariable String cartId) {
         GetCartByIdQuery query = new GetCartByIdQuery(cartId);
@@ -61,7 +59,6 @@ public class CartQueryController {
         return ResponseEntity.ok(cartModel);
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_CART)
     public ResponseEntity<List<CartModel>> getCarts() {
         GetCartsQuery query = new GetCartsQuery();

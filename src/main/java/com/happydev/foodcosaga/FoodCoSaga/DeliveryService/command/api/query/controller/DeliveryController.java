@@ -23,7 +23,6 @@ public class DeliveryController {
         this.queryGateway = queryGateway;
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_DELIVERY)
     public ResponseEntity<List<Delivery>> getDeliveries() {
         GetDeliveries query = new GetDeliveries();

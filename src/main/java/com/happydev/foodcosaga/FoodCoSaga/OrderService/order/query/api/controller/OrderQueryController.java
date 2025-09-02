@@ -25,7 +25,6 @@ public class OrderQueryController {
         this.queryGateway = queryGateway;
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_ORDER)
     public ResponseEntity<List<Orders>> getOrders() {
         GetOrderQuery getOrderQuery = new GetOrderQuery();
@@ -35,7 +34,6 @@ public class OrderQueryController {
         return ResponseEntity.ok(order);
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_ORDER+"/{orderId}")
     public ResponseEntity<Orders> getOrder(@PathVariable String orderId) {
         GetOrderByIdQuery query = new GetOrderByIdQuery();
@@ -45,7 +43,6 @@ public class OrderQueryController {
         return ResponseEntity.ok(order);
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_ORDER+"/countByStatus/{status}")
     public ResponseEntity<OrdersCountRes> getOrdersCountByStatus(@PathVariable String status) {
         GetOrdersCountQuery query = new GetOrdersCountQuery();

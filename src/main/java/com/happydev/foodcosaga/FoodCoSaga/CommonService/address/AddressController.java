@@ -21,32 +21,27 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_ADDRESS)
     public ResponseEntity<List<Address>> getAddresses() {
         return ResponseEntity.ok(addressService.getAddresses());
     }
 
-    @CrossOrigin
     @PostMapping(Constants.URL_ADDRESS)
     public ResponseEntity<String> createAddress(@RequestBody @Valid Address address) {
         String addressId = addressService.createAddress(address);
         return ResponseEntity.status(HttpStatus.CREATED).body(addressId);
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_ADDRESS+"/{addressId}")
     public ResponseEntity<Address> getAddress(@PathVariable String addressId) throws CustomMessageException {
         return ResponseEntity.ok(addressService.getAddress(addressId));
     }
 
-    @CrossOrigin
     @DeleteMapping(Constants.URL_ADDRESS+"/{addressId}")
     public ResponseEntity<String> removeAddress(@PathVariable String addressId) throws CustomMessageException {
         return ResponseEntity.ok(addressService.removeAddress(addressId));
     }
 
-    @CrossOrigin
     @PutMapping(Constants.URL_ADDRESS)
     public ResponseEntity<String> updateAddress(@RequestBody @Valid Address address) throws CustomMessageException {
         return ResponseEntity.ok(addressService.updateAddress(address));

@@ -23,7 +23,6 @@ public class DeliveryDriverQueryController {
         this.queryGateway = queryGateway;
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_DELIVERY_DRIVER)
     public ResponseEntity<List<DeliveryDriver>> getDeliveryDrivers() {
         GetDeliveryDrivers query = new GetDeliveryDrivers();

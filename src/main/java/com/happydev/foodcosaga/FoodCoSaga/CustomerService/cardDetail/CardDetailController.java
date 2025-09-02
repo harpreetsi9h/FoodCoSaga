@@ -20,32 +20,27 @@ public class CardDetailController {
         this.cardDetailService = cardDetail;
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_CARD_DETAIL)
     public ResponseEntity<List<CardDetail>> getCardDetails() {
         return ResponseEntity.ok(cardDetailService.getCardDetails());
     }
 
-    @CrossOrigin
     @PostMapping(Constants.URL_CARD_DETAIL)
     public ResponseEntity<String> createCardDetail(@RequestBody @Valid CardDetail cardDetail) {
         String cardDetailId = cardDetailService.createCardDetail(cardDetail);
         return ResponseEntity.status(HttpStatus.CREATED).body(cardDetailId);
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_CARD_DETAIL+"/{cardDetailId}")
     public ResponseEntity<CardDetail> getCardDetail(@PathVariable String cardDetailId) throws CustomMessageException {
         return ResponseEntity.ok(cardDetailService.getCardDetail(cardDetailId));
     }
 
-    @CrossOrigin
     @DeleteMapping(Constants.URL_CARD_DETAIL+"/{cardDetailId}")
     public ResponseEntity<String> removeCardDetail(@PathVariable String cardDetailId) throws CustomMessageException {
         return ResponseEntity.ok(cardDetailService.removeCardDetail(cardDetailId));
     }
 
-    @CrossOrigin
     @PutMapping(Constants.URL_CARD_DETAIL)
     public ResponseEntity<String> updateCardDetail(@RequestBody @Valid CardDetail cardDetail) throws CustomMessageException {
         return ResponseEntity.ok(cardDetailService.updateCardDetail(cardDetail));

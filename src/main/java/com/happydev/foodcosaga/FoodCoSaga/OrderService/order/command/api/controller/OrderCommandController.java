@@ -20,7 +20,6 @@ public class OrderCommandController {
         this.commandGateway = commandGateway;
     }
 
-    @CrossOrigin
     @PostMapping(Constants.URL_ORDER)
     public String createOrder(@RequestBody Orders order) {
 
@@ -45,7 +44,6 @@ public class OrderCommandController {
         return orderId;
     }
 
-    @CrossOrigin
     @PutMapping(Constants.URL_ORDER)
     public String updateOrder(@RequestBody Orders order) {
         UpdateOrderCommand updateOrderCommand

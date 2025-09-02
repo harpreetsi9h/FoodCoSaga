@@ -27,7 +27,6 @@ public class CustomerController {
 //        return ResponseEntity.ok(service.getCustomers());
 //    }
 
-    @CrossOrigin
     @PostMapping(Constants.URL_CUSTOMER)
     public ResponseEntity<String> createCustomer(@RequestBody @Valid Customer customer) {
         String customerId = service.createCustomer(customer);
@@ -39,19 +38,16 @@ public class CustomerController {
 //        return ResponseEntity.ok(service.getCustomer(customerId));
 //    }
 
-    @CrossOrigin
     @DeleteMapping(Constants.URL_CUSTOMER+"/{customerId}")
     public ResponseEntity<String> removeCustomer(@PathVariable String customerId) throws CustomMessageException {
         return ResponseEntity.ok(service.removeCustomer(customerId));
     }
 
-    @CrossOrigin
     @PutMapping(Constants.URL_CUSTOMER)
     public ResponseEntity<String> updateCustomer(@RequestBody @Valid Customer customer) throws CustomMessageException {
         return ResponseEntity.ok(service.updateCustomer(customer));
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_CUSTOMER+"/count")
     public ResponseEntity<CountResModel> getCustomerCount() {
         return ResponseEntity.ok(service.getCustomerCount());

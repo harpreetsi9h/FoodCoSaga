@@ -27,32 +27,27 @@ public class DeliveryDriverController {
 //        return ResponseEntity.ok(service.getDeliveryDrivers());
 //    }
 
-    @CrossOrigin
     @PostMapping(Constants.URL_DELIVERY_DRIVER)
     public ResponseEntity<String> createDeliveryDriver(@RequestBody @Valid DeliveryDriver driver) {
         String driverId = service.createDeliveryDriver(driver);
         return ResponseEntity.status(HttpStatus.CREATED).body(driverId);
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_DELIVERY_DRIVER+"/{driverId}")
     public ResponseEntity<DeliveryDriver> getDeliveryDriver(@PathVariable String driverId) throws CustomMessageException {
         return ResponseEntity.ok(service.getDeliveryDriver(driverId));
     }
 
-    @CrossOrigin
     @DeleteMapping(Constants.URL_DELIVERY_DRIVER+"/{driverId}")
     public ResponseEntity<String> removeDeliveryDriver(@PathVariable String driverId) throws CustomMessageException {
         return ResponseEntity.ok(service.removeDeliveryDriver(driverId));
     }
 
-    @CrossOrigin
     @PutMapping(Constants.URL_DELIVERY_DRIVER)
     public ResponseEntity<String> updateDeliveryDriver(@RequestBody @Valid DeliveryDriver driver) throws CustomMessageException {
         return ResponseEntity.ok(service.updateDeliveryDriver(driver));
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_DELIVERY_DRIVER+"/count")
     public ResponseEntity<CountResModel> getCustomerCount() {
         return ResponseEntity.ok(service.getDeliveryDriversCount());

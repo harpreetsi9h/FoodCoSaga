@@ -21,7 +21,6 @@ public class OrderItemQueryController {
         this.queryGateway = queryGateway;
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_ORDER_ITEM)
     public ResponseEntity<List<OrderItemModel>> getOrderItems() {
 
@@ -32,7 +31,6 @@ public class OrderItemQueryController {
         return ResponseEntity.ok(orderItems);
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_ORDER_ITEM+"/{orderItemId}")
     public ResponseEntity<OrderItemModel> getOrderItem(@PathVariable String orderItemId) {
 

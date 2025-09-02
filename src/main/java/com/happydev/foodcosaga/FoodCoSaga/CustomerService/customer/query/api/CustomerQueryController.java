@@ -20,7 +20,6 @@ public class CustomerQueryController {
         this.queryGateway = queryGateway;
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_CUSTOMER)
     public ResponseEntity<List<CustomerResponseModel>> getCustomers() {
         GetCustomersQuery query = new GetCustomersQuery();
@@ -29,7 +28,6 @@ public class CustomerQueryController {
         return ResponseEntity.ok(customers);
     }
 
-    @CrossOrigin
     @GetMapping(Constants.URL_CUSTOMER+"/{customerId}")
     public ResponseEntity<CustomerResponseModel> getCustomer(@PathVariable String customerId) throws CustomMessageException {
         GetCustomerByIdQuery query = new GetCustomerByIdQuery(customerId);

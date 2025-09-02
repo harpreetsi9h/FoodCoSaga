@@ -22,7 +22,6 @@ public class CartCommandController {
         this.commandGateway = commandGateway;
     }
 
-    @CrossOrigin
     @PostMapping(Constants.URL_CART)
     public String createCart(@RequestBody Cart cart) {
 
